@@ -1,5 +1,6 @@
 package ar.edu.unju.edm.trabajo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ar.edu.unju.edm.trabajo.model.Huesped;
 import ar.edu.unju.edm.trabajo.service.IHuespedService;
@@ -33,10 +35,20 @@ public class HuespedController {
   }
 
   @PostMapping("/huespedes/guardar")
-  public String guardarhuesped(Huesped huesped) {
-    huesped.setEstado(true);
-    huespedService.crear(huesped);
-    return "redirect:/huespedes";
+  public String guardarhuesped(Huesped huesped,RedirectAttributes redirectAttributes) {
+    try{
+      if(LocalDate.now().getYear()-huesped.getFechaNacimiento().getYear()>=18){
+        huesped.setEstado(true);
+        huespedService.crear(huesped);
+        return "redirect:/huespedes";
+      }else{
+        throw new RuntimeException("El huesped es menor de edad");
+      }
+    }catch(RuntimeException e){
+      redirectAttributes.addFlashAttribute("mensajeError", e.getMessage());
+      return "redirect:/huespedes/nuevo";
+    }
+    
   }
 
   @GetMapping("/huespedes/eliminar/{dni}")

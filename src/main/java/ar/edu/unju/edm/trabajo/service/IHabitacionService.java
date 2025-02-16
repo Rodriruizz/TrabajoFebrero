@@ -12,9 +12,9 @@ public interface IHabitacionService {
 
   public void eliminar(Long codigo);
 
-  public void actualizarEstado(Long codigo, Boolean estado);//es para cambiar entre disponible y ocupado
+  public void actualizarEstado(Long codigo, Boolean estado);
 
   public Habitacion buscarPorCodigo(Long codigo);
 
-  public Habitacion actualizar(Habitacion habitacion);//actualizar el objeto Habitacion
+  public Habitacion actualizar(Habitacion habitacion);
 }

@@ -13,9 +13,15 @@
   <div th:insert="~{/layouts/nav :: nav}"></div>
   <h1 th:text="${huesped.dni == null ? 'Agregar huesped' : 'Editar huesped'}"></h1>
   <form th:action="@{/huespedes/guardar}" th:object="${huesped}" method="post" class="row g-3">
-    <div class="col-md-6">
+    <div th:if="${mensajeError}" class="alert alert-danger" role="alert">
+      <span th:text="${mensajeError}"></span>
+    </div>
+    <div th:if="${huesped.dni != null}">
+      <input type="hidden" th:field="*{dni}">
+    </div>
+    <div th:if="${huesped.dni ==null}" class="col-md-6">
       <label for="dni" class="form-label">DNI</label>
-      <input required type="number" th:field="*{dni}" id="dni" class="form-control" placeholder="DNI">
+      <input required type="number" th:field="*{dni}" id="dni" min="1" class="form-control" placeholder="DNI">
     </div>
     <div class="col-md-6">
       <label for="apellido" class="form-label">Apellido</label>

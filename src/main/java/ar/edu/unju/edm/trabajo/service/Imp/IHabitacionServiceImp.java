@@ -9,7 +9,6 @@ import ar.edu.unju.edm.trabajo.model.Habitacion;
 import ar.edu.unju.edm.trabajo.repository.HabitacionRepository;
 import ar.edu.unju.edm.trabajo.service.IHabitacionService;
 
-// servico en sprig
 @Service
 public class IHabitacionServiceImp implements IHabitacionService {
   @Autowired

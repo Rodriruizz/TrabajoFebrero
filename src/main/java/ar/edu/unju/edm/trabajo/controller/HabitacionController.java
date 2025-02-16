@@ -14,10 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.edm.trabajo.model.Habitacion;
 import ar.edu.unju.edm.trabajo.service.IHabitacionService;
 
-
-@Controller//para identificar controladores
+@Controller
 public class HabitacionController {
-  @Autowired //llama a los metodos de la interface mencionada
+  @Autowired
   IHabitacionService habitacionService;
 
   @GetMapping("/habitaciones")

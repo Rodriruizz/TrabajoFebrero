@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +21,7 @@ public class Reserva {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long codigo;
-
+  @NotNull(message = "La fecha de la reserva no puede ser nula")
   private LocalDate fechaReserva;
 
   @ManyToOne

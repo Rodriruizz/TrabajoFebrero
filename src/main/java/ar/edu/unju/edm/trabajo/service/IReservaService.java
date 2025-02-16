@@ -9,7 +9,7 @@ import ar.edu.unju.edm.trabajo.model.Reserva;
 @Service
 public interface IReservaService {
 
-  public Reserva guardarReserva(String pasajeroId, Long habitacionId);
+  public Reserva guardarReserva(Reserva reserva);
 
   public List<Reserva> listarReservas();
 
